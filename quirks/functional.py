@@ -11,6 +11,16 @@ def combinator(*fncs):
 def flip(f):
     return lambda *a: f(*reversed(a))
 
+class maybe(object):
+    """inspired by haskell's Maybe monad"""
+    def __init__(self, *functions):
+        self.functions = functions
+    def __call__(self, *args, **kwargs):
+        for fnc in self.functions:
+            res = fnc(*args, **kwargs)
+            if res is not None:
+                return res
+
 # example of usage (overkill little-bit?:)
 def minkowski(n, p1, p2):
     from itertools import imap
