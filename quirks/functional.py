@@ -2,6 +2,7 @@ from operator import *
 from math import *
 from functools import *
 
+
 def combinator(*fncs):
     return lambda *args:getitem(
             reduce(lambda acc,fnc:(fnc(*acc),), 
@@ -13,9 +14,8 @@ def flip(f):
 
 class maybe(object):
     """inspired by haskell's Maybe monad"""
-    def __init__(self, default=None, *functions):
+    def __init__(self, *functions):
         self.functions = functions
-        self.default = default
     def __call__(self, *args, **kwargs):
         for fnc in self.functions:
             try:
@@ -24,7 +24,7 @@ class maybe(object):
                 res = None
             if res is not None:
                 return res
-        return self.default
+        return None
 
 # example of usage (overkill little-bit?:)
 def minkowski(n, p1, p2):
