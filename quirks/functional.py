@@ -13,13 +13,18 @@ def flip(f):
 
 class maybe(object):
     """inspired by haskell's Maybe monad"""
-    def __init__(self, *functions):
+    def __init__(self, *functions, default=None):
         self.functions = functions
+        self.default = default
     def __call__(self, *args, **kwargs):
         for fnc in self.functions:
-            res = fnc(*args, **kwargs)
+            try:
+                res = fnc(*args, **kwargs)
+            except:
+                res = None
             if res is not None:
                 return res
+        return default
 
 # example of usage (overkill little-bit?:)
 def minkowski(n, p1, p2):
