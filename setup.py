@@ -9,4 +9,5 @@ setup(name='Python Quirks',
       author_email='pborky@pborky.sk',
       url='https://github.com/pborky/python-quirks',
       packages=['quirks',],
+      requires=['fabulous==v0.1.5', 'pytables==2.3.1',], 
      )
