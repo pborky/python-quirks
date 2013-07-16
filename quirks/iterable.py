@@ -11,6 +11,9 @@ def itake(n, it):
     return imap(lambda x:x[1],takewhile(lambda x:x[0]<n, izip(count(),it)))    
 
 
+def first(iterable):
+    return iter(iterable).next() if iterable else None
+
 class ensure_iterable(object):
     def __init__(self, function):
         self.function = function
